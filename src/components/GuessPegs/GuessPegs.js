@@ -20,7 +20,7 @@ const GuessPegs = (props) => {
       <GuessPeg 
         currentGuess={props.currentGuess} 
         color={props.colors[props.code[3]]}
-        handleColorPick={() => props.handleColorPick(2)}/>
+        handleColorPick={() => props.handleColorPick(3)}/>
     </div>
   );
 }

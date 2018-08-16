@@ -24,11 +24,11 @@ class App extends Component {
 
   getStateObject() {
     return {
-        colors,
-        code: this.genCode(colors.length),
-        selColorIdx: 0,
-        guesses: [this.getNewGuess(), this.getNewGuess()],
-      };
+      colors,
+      code: this.genCode(colors.length),
+      selColorIdx: 0,
+      guesses: [this.getNewGuess(), this.getNewGuess()],
+    };
   }
 
   getNewGuess() {
@@ -59,8 +59,13 @@ class App extends Component {
   }
 
   handleColorPick = (pegIdx) => {
-    // console.log("im a chameleon")
-    alert(`peg clicked: ${pegIdx}`)
+    //optimize 
+    let guesses = [...this.state.guesses];
+    let guess = guesses[guesses.length - 1];
+    guess.code[pegIdx] = this.state.selColorIdx;
+    this.setState({
+      guesses: guesses
+    });
   }
 
   //event handler to start new game
@@ -73,7 +78,7 @@ class App extends Component {
     let winTries = this.getWinTries();
     return (
       <div className="App">
-        <header style={headFootStyle}>C H A R ' S &nbsp;&nbsp; M A S T E R M I N D</header>
+        <header style={headFootStyle}>C H A R ' S &nbsp;&nbsp; M A S T E R M I N D game</header>
         <div className="App-game">
           <GameBoard
             guesses={this.state.guesses}
