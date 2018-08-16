@@ -48,8 +48,8 @@ class App extends Component {
 
   getWinTries = () => {
     // if winner, return num guesses, otherwise 0 (no winner)
-    let lastGuess = this.state.guesses.length - 1;
-    return this.state.code.join() === this.state.guesses[lastGuess].code.join() ? lastGuess + 1 : 0;
+    let lastGuess = this.state.guesses[this.state.guesses.length - 1];
+    return lastGuess.score.perfect === 4 ? this.state.guesses.length : 0;
   }
 
   //event handler

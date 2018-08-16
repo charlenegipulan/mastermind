@@ -21,7 +21,7 @@ const GuessRow = (props) => {
         handleColorPick={props.handleColorPick}
       />
       {
-        props.currentGuess ?
+        props.currentGuess && (props.guess.score.perfect !== 4) ?
           <ScoreButton 
             code={props.guess.code} 
             handleScoreButton={props.handleScoreButton}/> :
