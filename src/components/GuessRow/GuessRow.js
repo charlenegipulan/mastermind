@@ -18,6 +18,7 @@ const GuessRow = (props) => {
         code={props.guess.code} 
         colors={props.colors} 
         currentGuess={props.currentGuess}
+        handleColorPick={props.handleColorPick}
       />
       {
         props.currentGuess ?

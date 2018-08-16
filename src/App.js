@@ -27,7 +27,7 @@ class App extends Component {
         colors,
         code: this.genCode(colors.length),
         selColorIdx: 0,
-        guesses: [this.getNewGuess()],
+        guesses: [this.getNewGuess(), this.getNewGuess()],
       };
   }
 
@@ -55,12 +55,19 @@ class App extends Component {
   //event handler
   handleColorSelection = (colorIdx) => {
     this.setState({ selColorIdx: colorIdx });
+    // console.log(`color: ${colorIdx}`)
+  }
+
+  handleColorPick = (pegIdx) => {
+    // console.log("im a chameleon")
+    alert(`peg clicked: ${pegIdx}`)
   }
 
   //event handler to start new game
  handleNewGame = () => {
    this.setState(this.getStateObject());
  }
+
 
   render() {
     let winTries = this.getWinTries();
@@ -71,6 +78,7 @@ class App extends Component {
           <GameBoard
             guesses={this.state.guesses}
             colors={this.state.colors}
+            handleColorPick={this.handleColorPick}
           />
           <div className="App-controls">
             <ColorPicker
