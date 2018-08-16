@@ -13,6 +13,7 @@ const GameBoard = (props) => {
           currentGuess={idx === (props.guesses.length - 1)}
           key={idx}
           handleColorPick={props.handleColorPick}
+          handleScoreButton={props.handleScoreButton}
         />
       )}
     </div>

@@ -27,7 +27,7 @@ class App extends Component {
       colors,
       code: this.genCode(colors.length),
       selColorIdx: 0,
-      guesses: [this.getNewGuess(), this.getNewGuess()],
+      guesses: [this.getNewGuess()],
     };
   }
 
@@ -68,6 +68,42 @@ class App extends Component {
     });
   }
 
+  handleScoreButton = () => {
+    let guessCode = [...this.state.guesses[this.state.guesses.length -1].code];
+    let secretCode = [...this.state.code];
+    var perfect = 0;
+    var almost = 0;
+    var currentGuess = this.state.guesses[this.state.guesses.length -1];
+
+    guessCode.forEach(function(c, idx) {
+      if (c === secretCode[idx]) {
+        perfect ++;
+        guessCode[idx] = secretCode[idx] = null;
+      }
+      return perfect;
+    });
+
+    guessCode.forEach(function(c, idx) {
+      if (c === null) return
+      var j = secretCode.indexOf(c);
+      if (j > -1) {
+        almost ++;
+        guessCode[idx] = secretCode[j] = null;
+      }
+      return almost;
+    });
+
+    currentGuess.score.almost = almost;
+    currentGuess.score.perfect = perfect;
+
+    //if perfect is not 4, game still go push in new guess
+    if (perfect !== 4) this.state.guesses.push(this.getNewGuess());
+
+    this.setState({ 
+      guesses: this.state.guesses 
+    });
+  }
+
   //event handler to start new game
  handleNewGame = () => {
    this.setState(this.getStateObject());
@@ -84,6 +120,7 @@ class App extends Component {
             guesses={this.state.guesses}
             colors={this.state.colors}
             handleColorPick={this.handleColorPick}
+            handleScoreButton={this.handleScoreButton}
           />
           <div className="App-controls">
             <ColorPicker
