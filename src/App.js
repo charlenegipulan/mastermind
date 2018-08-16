@@ -19,8 +19,7 @@ let colors = ['#4881B6', '#D1AD74', '#99C78E', '#F39A88'];
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getStateObject()
-    this.newState = this.state;
+    this.state = this.getStateObject();
   }
 
   getStateObject() {
@@ -42,6 +41,7 @@ class App extends Component {
     };
   }
 
+
   genCode(size) {
     return new Array(4).fill().map(dummy => Math.floor(Math.random() * size));
   }
@@ -57,9 +57,9 @@ class App extends Component {
     this.setState({ selColorIdx: colorIdx });
   }
 
-  //event handler
+  //event handler to start new game
  handleNewGame = () => {
-   this.setState(this.newState);
+   this.setState(this.getStateObject());
  }
 
   render() {
