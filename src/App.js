@@ -19,16 +19,17 @@ let colors = ['#4881B6', '#D1AD74', '#99C78E', '#F39A88'];
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      colors,
-      code: this.genCode(colors.length),
-      selColorIdx: 0,
-      guesses: [this.getNewGuess()]
-    };
+    this.state = this.getStateObject()
+    this.newState = this.state;
   }
 
-  startNewGame = () {
-
+  getStateObject() {
+    return {
+        colors,
+        code: this.genCode(colors.length),
+        selColorIdx: 0,
+        guesses: [this.getNewGuess()],
+      };
   }
 
   getNewGuess() {
@@ -56,6 +57,11 @@ class App extends Component {
     this.setState({ selColorIdx: colorIdx });
   }
 
+  //event handler
+ handleNewGame = () => {
+   this.setState(this.newState);
+ }
+
   render() {
     let winTries = this.getWinTries();
     return (
@@ -72,7 +78,7 @@ class App extends Component {
               selColorIdx={this.state.selColorIdx}
               colors={this.state.colors}
             />
-            <NewGameButton />
+            <NewGameButton handleNewGame={this.handleNewGame} />
           </div>
         </div>
         <footer style={headFootStyle}>{(winTries ? `You Won in ${winTries} Guesses!` : 'Good Luck!')}</footer>
