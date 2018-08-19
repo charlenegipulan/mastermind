@@ -8,9 +8,9 @@ The player must guess the winning color combination by choosing the right color 
 
 They are represented by:
 | Score | Meaning |
-|-------------|------------------------------------------------------|
-|Black dot | player guessed the right color at the correct spot |
-|Hollow dot | player guessed a correct color but placed incorrectly|
+| ----- |:-------:|
+| Black dot | player guessed the right color at the correct spot |
+| Hollow dot | player guessed a correct color but placed incorrectly |
 
 ## Sreenshot
 
