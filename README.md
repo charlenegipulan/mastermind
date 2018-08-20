@@ -16,5 +16,3 @@ They are represented by:
 ## Sreenshot
 
 ![screenshot](https://i.imgur.com/MHHrVNX.png "screenshot")
-
-##
