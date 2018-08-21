@@ -8,13 +8,11 @@ import './App.css';
 import GamePage from '../GamePage/GamePage';
 import SettingsPage from '../SettingsPage/SettingsPage';
 
-
 let colorTable = [
   {name: 'Easy', colors: ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD']},
   {name: 'Moderate', colors: ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD', '#B7D968']},
   {name: 'Difficult', colors: ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD', '#B7D968', '#555E7B']}
 ];
-
 
 class App extends Component {
   constructor(props) {
@@ -46,9 +44,8 @@ class App extends Component {
     };
   }
 
-
   genCode(size) {
-    return new Array(4).fill().map(dummy => Math.floor(Math.random() * size));
+    return new Array(size).fill().map(dummy => Math.floor(Math.random() * size));
   }
 
   setDifficulty = (level) => {
@@ -58,14 +55,14 @@ class App extends Component {
     });
   }
 
-   /*-----Callback Methods ----*/
+    /*---------- Callback Methods ----------*/
 
   handleColorSelection = (colorIdx) => {
-     this.setState({ selColorIdx: colorIdx });
+    this.setState({selColorIdx: colorIdx});
   }
 
- handleNewGame = () => {
-  this.setState(this.getInitialState());
+  handleNewGameClick = () => {
+    this.setState(this.getInitialState());
   }
 
   handlePegClick = (pegIdx) => {
@@ -87,8 +84,9 @@ class App extends Component {
     });
   }
 
-  handleScoreButton = () => {
+  handleScoreClick = () => {
     let currentGuessIdx = this.state.guesses.length - 1;
+
     // Computing the score will modify the guessed code and the
     // secret code, therefore create copies of the originals
     let guessCodeCopy = [...this.state.guesses[currentGuessIdx].code];
@@ -105,7 +103,7 @@ class App extends Component {
       }
     });
 
-    //Second pass computes number of 'almost'
+    // Second pass computes number of "almost"
     guessCodeCopy.forEach((code, idx) => {
       if (code === null) return;
       let foundIdx = secretCodeCopy.indexOf(code);
@@ -115,70 +113,78 @@ class App extends Component {
       }
     });
 
-      // State must only be updated with NEW objects/arrays
+    // State must only be updated with NEW objects/arrays
     let guessesCopy = [...this.state.guesses];
 
-    //Set scores
+    // Set scores
     guessesCopy[currentGuessIdx].score.perfect = perfect;
     guessesCopy[currentGuessIdx].score.almost = almost;
 
-    //if perfect is not 4, game still go push in new guess
-    if (perfect !== 4) this.state.guesses.push(this.getNewGuess());
+    // Add a new guess if not a winner
+    if (perfect === 4) {
+      this.setState({isTiming: false});
+    } else {
+      guessesCopy.push(this.getNewGuess());
+    } 
 
-
-    //update state with new guessess array
-    this.setState({ 
-      guesses: this.state.guesses 
+    // Finally, update the state with the NEW guesses array
+    this.setState({
+      guesses: guessesCopy
     });
   }
 
-  getWinTries = () => {
-    // if winner, return num guesses, otherwise 0 (no winner)
-    let lastGuess = this.state.guesses[this.state.guesses.length - 1];
-    return lastGuess.score.perfect === 4 ? this.state.guesses.length : 0;
+  //handle timer clicking method
+  handleTick = () => {
+    this.setState((prevState) => ({
+      elapsedTime: ++prevState.elapsedTime
+    }))
   }
 
-/*---Lifecycle Methods---*/
+  /*--- Lifecycle Methods ---*/
 
- componentDidMount() {
-  console.log('App: componentDidMount')
+  componentDidMount() {
+    console.log('App: componentDidMount')
   }
 
   componentWillMount() {
-  console.log('App: componentWillMount')
+    console.log('App: componentWillMount')
   }
- 
- render() {
-  console.log('App: render')
-  return (
-    <div>
-      <header className='header-footer'>R E A C T &nbsp;&nbsp; M A S T E R M I N D</header>
-      <Router>
-          <Switch>
-            <Route exact path='/' render={() =>
-              <GamePage
-                colors={this.state.colors}
-                selColorIdx={this.state.selColorIdx}
-                guesses={this.state.guesses}
-                elapsedTime={this.state.elapsedTime}
-                handleColorSelection={this.handleColorSelection}
-                handleNewGameClick={this.handleNewGameClick}
-                handlePegClick={this.handlePegClick}
-                handleScoreClick={this.handleScoreClick}
-              />}
-            />
-            <Route exact path='/settings' render={({history}) => 
-              <SettingsPage
-                colorTable={colorTable}
-                difficultyLevel={this.state.difficultyLevel}
-                handleDifficultyChange={this.setDifficulty}
-                handleNewGame={this.handleNewGameClick}
-                history={history}
+
+
+  
+  render() {
+    console.log('App: render')
+    return (
+      <div>
+        <header className='header-footer'>C H A R ' S&nbsp;&nbsp; R E A C T &nbsp;&nbsp; M A S T E R M I N D</header>
+        <Router>
+            <Switch>
+              <Route exact path='/' render={() =>
+                <GamePage
+                  colors={this.state.colors}
+                  selColorIdx={this.state.selColorIdx}
+                  guesses={this.state.guesses}
+                  elapsedTime={this.state.elapsedTime}
+                  isTiming={this.state.isTiming}
+                  handleColorSelection={this.handleColorSelection}
+                  handleNewGameClick={this.handleNewGameClick}
+                  handlePegClick={this.handlePegClick}
+                  handleScoreClick={this.handleScoreClick}
+                  handleTick={this.handleTick}
+                />}
               />
-            }/>
-          </Switch>
-      </Router>
-    </div>
+              <Route exact path='/settings' render={({history}) => 
+                <SettingsPage
+                  colorTable={colorTable}
+                  difficultyLevel={this.state.difficultyLevel}
+                  handleDifficultyChange={this.setDifficulty}
+                  handleNewGame={this.handleNewGameClick}
+                  history={history}
+                />
+              }/>
+            </Switch>
+        </Router>
+      </div>
     );
   }
 }

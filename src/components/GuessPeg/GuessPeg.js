@@ -14,7 +14,7 @@ const GuessPeg = (props) => {
 
   return (
     //make only the pegs from current row clickable
-    <div style={style} onClick={props.currentGuess ? props.handleColorPick : null }/>
+    <div style={style} onClick={props.currentGuess ? props.handlePegClick : null }/>
   );
 }
 

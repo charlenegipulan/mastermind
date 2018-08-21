@@ -14,17 +14,18 @@ const GuessRow = (props) => {
       >
           {props.rowIdx + 1}
       </div>
-      <GuessPegs 
-        code={props.guess.code} 
-        colors={props.colors} 
+      <GuessPegs
+        code={props.guess.code}
+        colors={props.colors}
         currentGuess={props.currentGuess}
-        handleColorPick={props.handleColorPick}
+        handlePegClick={props.handlePegClick}
       />
       {
         props.currentGuess && (props.guess.score.perfect !== 4) ?
-          <ScoreButton 
-            code={props.guess.code} 
-            handleScoreButton={props.handleScoreButton}/> :
+          <ScoreButton
+            handleScoreClick={props.handleScoreClick}
+            disabled={props.guess.code.includes(null)}
+          /> :
           <GuessScore score={props.guess.score} />
       }
     </div>

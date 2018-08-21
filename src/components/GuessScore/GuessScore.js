@@ -1,9 +1,9 @@
 import React from 'react';
 import './GuessScore.css';
 
-const GuessScore = ({ score }) => {
-  let scores = ('P'.repeat(score.perfect) + 'A'.repeat(score.almost) +
-    'I'.repeat(4 - score.perfect - score.almost)).split('');
+const GuessScore = (props) => {
+  let scores = ('P'.repeat(props.score.perfect) + 'A'.repeat(props.score.almost) +
+    'I'.repeat(4 - props.score.perfect - props.score.almost)).split('');
 
   let baseStyle = {
     width: 10,
