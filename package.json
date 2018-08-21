@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "react-scripts": "^1.1.4"
@@ -16,5 +19,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }

@@ -35,6 +35,7 @@ const GamePage = (props) => {
           />
           <Link className='btn btn-default' style={{margin: '0 10px'}} to='/settings'>Difficulty</Link>
           <NewGameButton handleNewGameClick={props.handleNewGameClick}/>
+          <Link className='btn btn-default' style={{margin: '0 10px'}} to='/highscores'>High Scores</Link>
         </div>
       </div>
       <footer className='header-footer'>{(winTries ? `You Won in ${winTries} Guesses!` : 'Good Luck!')}</footer>
