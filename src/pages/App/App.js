@@ -8,6 +8,7 @@ import './App.css';
 import GamePage from '../GamePage/GamePage';
 import SettingsPage from '../SettingsPage/SettingsPage';
 import HighScoresPage from '../HighScoresPage/HighScoresPage';
+
 let colorTable = [
   {name: 'Easy', colors: ['#769F74', '#FDE47F', '#E04644', '#5182AA']},
   {name: 'Moderate', colors: ['#769F74', '#FDE47F', '#E04644', '#5182AA', '#B7D968']},
@@ -196,6 +197,7 @@ class App extends Component {
               }/>
               <Route exact path='/highscores' render={({history}) => 
                 <HighScoresPage
+                  highScores={this.state.highScores}
                   history={history}
                 />
               }/>
