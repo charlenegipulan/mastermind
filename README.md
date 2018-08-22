@@ -13,6 +13,9 @@ They are represented by:
 | Black dot  |  player guessed the right color at the correct spot   |
 | Hollow dot | player guessed a correct color but placed incorrectly |
 
-## Sreenshot
+## Sreenshots
 
-![screenshot](https://i.imgur.com/MHHrVNX.png "screenshot")
+![screenshot](https://i.imgur.com/QF2fwUh.png "screenshot")
+![screenshot1](https://i.imgur.com/yde6C6N.png "screenshot"1)
+![screenshot3](https://i.imgur.com/MHHrVNX.png "screenshot"3)
+![screenshot2](https://i.imgur.com/dlEHNnb.png "screenshot"2)
