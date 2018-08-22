@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = Object.assign(
-      {difficultyLevel: 0, colors: colorTable[0].colors},
+      {difficultyLevel: 0, colors: colorTable[0].colors, scores: []},
       this.getInitialState()
     );
   }
@@ -29,7 +29,6 @@ class App extends Component {
       guesses: [this.getNewGuess()],
       elapsedTime: 0,
       finalTime: 0,
-      // highScores: [this.getUserScore()]
     };
   }
 
@@ -43,13 +42,13 @@ class App extends Component {
     };
   }
 
-  getUserScore() {
-    return {
-      initials: "",
-      numGuesses: 0,
-      seconds: 0
-    }
-  }
+  // getUserScore() {
+  //   return {
+  //     initials: "",
+  //     numGuesses: 0,
+  //     seconds: 0
+  //   }
+  // }
 
   // getUserInitials() {
   //   var input = prompt('You got a high score! Please enter your initials')
@@ -229,7 +228,7 @@ class App extends Component {
                   history={history}
                 />
               }/>
-              <Route exact path='/high-scores' render={({history}) => 
+              <Route exact path='/high-scores' render={() => 
                 <HighScoresPage
                 scores={this.state.scores}
                 />
