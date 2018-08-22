@@ -195,6 +195,15 @@ class App extends Component {
     }));
   }
 
+  /*---- Lifecycle Methods ----*/
+
+  componentDidMount() {
+    fetch('/api/highscores').then(res => res.json())
+    .then(scores => {
+      this.setState({scores});
+    });
+  }
+
   render() {
     return (
       <div>
