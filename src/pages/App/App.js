@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import './App.css';
 import GamePage from '../GamePage/GamePage';
 import SettingsPage from '../SettingsPage/SettingsPage';
@@ -208,7 +204,6 @@ class App extends Component {
     return (
       <div>
         <header className='header-footer'>C H A R ' S &nbsp;&nbsp;R E A C T &nbsp;&nbsp; M A S T E R M I N D&nbsp;&nbsp; G A M E</header>
-        <Router>
             <Switch>
               <Route exact path='/' render={() =>
                 <GamePage
@@ -220,6 +215,7 @@ class App extends Component {
                   handlePegClick={this.handlePegClick}
                   handleScoreClick={this.handleScoreClick}
                   elapsedTime={this.state.elapsedTime}
+                  interval={1000}
                   handleTick={this.handleTick}
                   isTiming={!this.state.finalTime}
                 />
@@ -233,15 +229,12 @@ class App extends Component {
                   history={history}
                 />
               }/>
-              <Route exact path='/highscores' render={({history}) => 
+              <Route exact path='/high-scores' render={({history}) => 
                 <HighScoresPage
-                  highScores={this.state.highScores}
-                  history={history}
+                scores={this.state.scores}
                 />
               }/>
-              
             </Switch>
-        </Router>
       </div>
     );
   }
