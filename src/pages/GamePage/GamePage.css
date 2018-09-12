@@ -7,13 +7,17 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    background-color: #E4D9CA;
+    
 }
   
 .GamePage-controls {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    margin-left: 20px;
+    background-color: #F2F2F2;
+    border: 5vw solid #1A67E5;
+    box-shadow: 5px 10px #2957A1;
 }
   
 .GamePage-nav {
@@ -22,6 +26,17 @@
 
 .GamePage-button {
     margin: 10px 10px 0;
+}
+
+.divider {
+    width: 2vw;
+    background-color: #1A67E5;
+    box-shadow:5px 10px #2957A1;
+    padding-top: 5vh;
+}
+
+.divider p {
+    color: #D0D0D0;
 }
   
   

@@ -42,20 +42,6 @@ class App extends Component {
     };
   }
 
-  // getUserScore() {
-  //   return {
-  //     initials: "",
-  //     numGuesses: 0,
-  //     seconds: 0
-  //   }
-  // }
-
-  // getUserInitials() {
-  //   var input = prompt('You got a high score! Please enter your initials')
-  //   return input ? input.toUpperCase() : '';
-  //     // this.setState({initials: input.value})
-  // }
-
   isHighScore = (guessesCopy) => {
     let lastScore = this.state.scores[this.state.scores.length - 1];
     return (guessesCopy.length < lastScore.numGuesses || (
@@ -99,25 +85,6 @@ class App extends Component {
     });
   }
 
-  // checkHighScore = () => {
-  //   var worst = this.state.highScores[this.state.highScores.length - 1];
-  //   var numGuesses = this.state.guesses.length
-  //   var seconds = this.state.elapsedTime
-  //   if (this.state.highScores.length < 20 || numGuesses < worst.numGuesses || (numGuesses === worst.numGuesses && seconds < worst.seconds)) {
-  //     do {
-  //       var initials = this.getUserInitials();
-  //       this.setState({ initials : this.input })
-  //     } while (initials.length < 2 || initials.length > 3);
-  //     let highScoresCopy = [...this.state.highScores]
-  //     highScoresCopy[highScoresCopy.length - 1].initials = initials;
-  //     highScoresCopy[highScoresCopy.length - 1].numGuesses = numGuesses;
-  //     highScoresCopy[highScoresCopy.length - 1].seconds = seconds;
-  //     this.setState(prevState => ({
-  //       highScores: highScoresCopy
-  //     }));
-  //   }
-  //   console.log(this.state.highScores)
-  // }
 
   handleScoreClick = () => {
     let currentGuessIdx = this.state.guesses.length - 1;
@@ -201,8 +168,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <header className='header-footer'>C H A R ' S &nbsp;&nbsp;R E A C T &nbsp;&nbsp; M A S T E R M I N D&nbsp;&nbsp; G A M E</header>
+      <div className='App'>
+        <header className='header-footer'><h1>C H A R ' S &nbsp;&nbsp;R E A C T &nbsp;&nbsp; M A S T E R M I N D&nbsp;&nbsp; G A M E</h1></header>
             <Switch>
               <Route exact path='/' render={() =>
                 <GamePage

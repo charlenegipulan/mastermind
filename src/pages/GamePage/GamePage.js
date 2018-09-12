@@ -21,6 +21,31 @@ const GamePage = (props) => {
           handlePegClick={props.handlePegClick}
           handleScoreClick={props.handleScoreClick}
         />
+        <div className="divider">
+        <p>
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        ●
+        </p>
+        </div>
         <div className="GamePage-controls">
           <ColorPicker
             handleColorSelection={props.handleColorSelection}
@@ -33,8 +58,8 @@ const GamePage = (props) => {
             handleTick={props.handleTick}
             isTiming={props.isTiming}
           />
-          <Link className='btn btn-default GamePage-button' to='/high-scores'>High Scores</Link>
-          <Link className='btn btn-default GamePage-button' to='/settings'>Difficulty</Link>
+          <Link className='btn btn-warning GamePage-button' to='/high-scores'>High Scores</Link>
+          <Link className='btn btn-warning GamePage-button' to='/settings'>Difficulty</Link>
           <NewGameButton handleNewGameClick={props.handleNewGameClick}/>
         </div>
       </div>
